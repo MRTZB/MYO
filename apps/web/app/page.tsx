@@ -1,65 +1,72 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen bg-[#F7FAFA] text-[#0F172A]">
+      <div className="flex min-h-screen">
+        <aside className="w-72 border-r border-slate-200 bg-white p-6">
+          <div className="rounded-2xl bg-[#81D8D0] p-5 text-slate-950">
+            <div className="text-2xl font-bold tracking-tight">MYO</div>
+            <div className="text-sm font-medium">Business OS</div>
+          </div>
+
+          <nav className="mt-8 space-y-2 text-sm font-medium">
+            {["Dashboard", "Klanten", "Facturen", "Automatische facturen", "Documenten", "Taken", "AI Assistent", "Instellingen"].map((item, index) => (
+              <div
+                key={item}
+                className={`rounded-xl px-4 py-3 ${
+                  index === 0 ? "bg-[#81D8D0]/25 text-slate-950" : "text-slate-500"
+                }`}
+              >
+                {item}
+              </div>
+            ))}
+          </nav>
+        </aside>
+
+        <section className="flex-1 p-10">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold">Dashboard</h1>
+              <p className="mt-2 text-slate-500">Goedemorgen Mert, hier is je overzicht.</p>
+            </div>
+
+            <button className="rounded-xl bg-[#F37021] px-5 py-3 text-sm font-bold text-white shadow-sm">
+              + Nieuw
+            </button>
+          </div>
+
+          <div className="mt-10 grid grid-cols-4 gap-5">
+            {[
+              ["Omzet deze maand", "€ 24.850", "+12,5% t.o.v. vorige maand"],
+              ["Openstaande facturen", "€ 8.450", "6 facturen openstaand"],
+              ["Betaald deze maand", "€ 16.400", "8 facturen betaald"],
+              ["Te laat", "€ 2.150", "3 facturen te laat"],
+            ].map(([title, value, sub]) => (
+              <div key={title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="text-sm text-slate-500">{title}</div>
+                <div className="mt-3 text-3xl font-bold">{value}</div>
+                <div className="mt-2 text-sm text-slate-400">{sub}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid grid-cols-3 gap-5">
+            <div className="col-span-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="font-bold">Omzet overzicht</div>
+              <div className="mt-8 h-64 rounded-2xl bg-gradient-to-br from-[#81D8D0]/40 to-white" />
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="font-bold">Facturen status</div>
+              <div className="mx-auto mt-10 flex h-40 w-40 items-center justify-center rounded-full border-[18px] border-[#81D8D0]">
+                <div className="text-center">
+                  <div className="text-3xl font-bold">19</div>
+                  <div className="text-xs text-slate-400">Totaal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
