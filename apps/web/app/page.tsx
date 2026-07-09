@@ -1,46 +1,12 @@
-const menuItems = [
-  "Dashboard",
-  "Klanten",
-  "Facturen",
-  "Automatische facturen",
-  "Documenten",
-  "Taken",
-  "AI Assistent",
-  "Instellingen",
-];
-
-const stats = [
-  ["Omzet deze maand", "€ 24.850", "+12,5% t.o.v. vorige maand"],
-  ["Openstaande facturen", "€ 8.450", "6 facturen openstaand"],
-  ["Betaald deze maand", "€ 16.400", "8 facturen betaald"],
-  ["Te laat", "€ 2.150", "3 facturen te laat"],
-];
+import { Sidebar } from "@/components/sidebar";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { invoices, stats } from "@/lib/dashboard-data";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <div className="flex min-h-screen">
-        <aside className="w-72 border-r border-[var(--border)] bg-[var(--card)] p-6">
-          <div className="rounded-2xl bg-[var(--primary)] p-5 text-slate-950">
-            <div className="text-2xl font-bold tracking-tight">MYO</div>
-            <div className="text-sm font-medium">Business OS</div>
-          </div>
-
-          <nav className="mt-8 space-y-2 text-sm font-medium">
-            {menuItems.map((item, index) => (
-              <div
-                key={item}
-                className={`rounded-xl px-4 py-3 ${
-                  index === 0
-                    ? "bg-[var(--primary)]/25 text-[var(--foreground)]"
-                    : "text-[var(--muted)]"
-                }`}
-              >
-                {item}
-              </div>
-            ))}
-          </nav>
-        </aside>
+        <Sidebar />
 
         <section className="flex-1 p-10">
           <div className="flex items-center justify-between">
@@ -51,9 +17,12 @@ export default function Home() {
               </p>
             </div>
 
-            <button className="rounded-xl bg-[var(--accent)] px-5 py-3 text-sm font-bold text-white shadow-sm">
-              + Nieuw
-            </button>
+            <div className="flex gap-3">
+              <ThemeToggle />
+              <button className="rounded-xl bg-[var(--accent)] px-5 py-3 text-sm font-bold text-white shadow-sm">
+                + Nieuw
+              </button>
+            </div>
           </div>
 
           <div className="mt-10 grid grid-cols-4 gap-5">
@@ -83,6 +52,24 @@ export default function Home() {
                   <div className="text-xs text-[var(--muted)]">Totaal</div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-sm">
+            <div className="mb-5 font-bold">Laatste facturen</div>
+            <div className="space-y-4">
+              {invoices.map(([name, amount, status]) => (
+                <div key={name} className="flex items-center justify-between border-b border-[var(--border)] pb-4 last:border-0">
+                  <div>
+                    <div className="font-semibold">{name}</div>
+                    <div className="text-sm text-[var(--muted)]">Factuur 2026-045</div>
+                  </div>
+                  <div className="font-bold">{amount}</div>
+                  <div className="rounded-full bg-[var(--primary)]/20 px-3 py-1 text-xs font-bold">
+                    {status}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
